@@ -266,7 +266,7 @@ clipman_history_add_text (ClipmanHistory *history,
     }
 
   /* Store the text */
-  DBG ("Store text `%s')", text);
+  DBG ("Store text `%s'", text);
 
   item = g_slice_new0 (ClipmanHistoryItem);
   item->type = CLIPMAN_HISTORY_TYPE_TEXT;
