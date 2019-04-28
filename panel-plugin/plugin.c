@@ -104,6 +104,7 @@ plugin_register (void)
                            G_TYPE_BOOLEAN, plugin->actions, "skip-action-on-key-down");
 
   /* ClipmanHistory */
+  /* gets the previous history from file */
   plugin->history = clipman_history_get ();
   xfconf_g_property_bind (plugin->channel, "/settings/max-texts-in-history",
                           G_TYPE_UINT, plugin->history, "max-texts-in-history");
@@ -115,6 +116,7 @@ plugin_register (void)
                           G_TYPE_BOOLEAN, plugin->history, "reorder-items");
 
   /* ClipmanCollector */
+  /* gets the current clipboard content */
   plugin->collector = clipman_collector_get ();
   xfconf_g_property_bind (plugin->channel, "/settings/add-primary-clipboard",
                           G_TYPE_BOOLEAN, plugin->collector, "add-primary-clipboard");
@@ -126,6 +128,7 @@ plugin_register (void)
                           G_TYPE_BOOLEAN, plugin->collector, "inhibit");
 
   /* ClipmanMenu */
+  /* spawns the menu containing the history on left click */
   plugin->menu = clipman_menu_new ();
 #ifdef HAVE_QRENCODE
   xfconf_g_property_bind (plugin->channel, "/settings/show-qr-code",
