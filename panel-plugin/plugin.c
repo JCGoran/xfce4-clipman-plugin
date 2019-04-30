@@ -104,7 +104,7 @@ plugin_register (void)
                            G_TYPE_BOOLEAN, plugin->actions, "skip-action-on-key-down");
 
   /* ClipmanHistory */
-  /* gets the previous history from file */
+  /* gets the previous history from file (or not?) */
   plugin->history = clipman_history_get ();
   xfconf_g_property_bind (plugin->channel, "/settings/max-texts-in-history",
                           G_TYPE_UINT, plugin->history, "max-texts-in-history");
@@ -142,6 +142,7 @@ plugin_register (void)
                           G_TYPE_BOOLEAN, plugin->menu, "never-confirm-history-clear");
 
   /* Load the data */
+  /* Loads the data from the history file */
   plugin_load (plugin);
 
   /* Connect signal to save content */
@@ -153,6 +154,7 @@ plugin_register (void)
   return plugin;
 }
 
+/* loads the recent history from file */
 void
 plugin_load (MyPlugin *plugin)
 {
@@ -203,6 +205,7 @@ plugin_load (MyPlugin *plugin)
   clipman_history_set_item_to_restore (plugin->history, NULL);
 }
 
+/* save current history to file */
 void
 plugin_save (MyPlugin *plugin)
 {
@@ -286,6 +289,7 @@ plugin_save (MyPlugin *plugin)
     }
 }
 
+/* free memory allocated by plugin */
 void
 plugin_free (MyPlugin *plugin)
 {
@@ -311,6 +315,7 @@ plugin_free (MyPlugin *plugin)
   xfconf_shutdown ();
 }
 
+/* the text shown in the About page of the plugin (Credits and License) */
 void
 plugin_about (MyPlugin *plugin)
 {
@@ -345,6 +350,7 @@ plugin_about (MyPlugin *plugin)
                          NULL);
 }
 
+/* opens the settings dialog */
 void
 plugin_configure (MyPlugin *plugin)
 {
